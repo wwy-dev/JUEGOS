@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ADIVINA EL NUMERO">
+    <title>ADIVINA EL NUMERO - JUEGO</title>
+    <link rel="icon" type="image/x-icon" href="https://iili.io/C6UUZtj.jpg">
+    <meta property="og:title" content="ADIVINA EL NUMERO">
+    <meta property="og:description" content="ADIVINA EL NUMERO">
+    <meta property="og:image" content="https://iili.io/C6UUZtj.jpg">
+    <style>
+        body {
+           display: flex; justify-content: center; align-items: center; background-image: linear-gradient(to bottom, rgb(49, 0, 49), rgb(18, 0, 51) 50%, rgb(43, 0, 43) 75%, rgb(0, 4, 39)); min-height: 100vh; margin: 0;font-family: sans-serif;
+        }.card {
+           width: 90%;max-width: 570px;background-image: linear-gradient(to bottom, rgb(0, 11, 114), rgb(0, 0, 63)); border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 35px 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-sizing: border-box;text-align: center;
+        }h1 {
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 20px 0; font-size: 36px;
+        }.btn {
+            background-image: linear-gradient(to bottom, #00b300, #00ff66); width: 220px; height: 42px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 20px; box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3); cursor: pointer; text-shadow: 1px 1px 2px black;
+        }h2#intentos {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 20px 0px 30px 0px; font-size: 36px;
+        }input#respuesta {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(7, 7, 7); margin: 0 0 20px 0; font-size: 36px;text-align: center;
+        }.resultado-card {
+        width: 100%; background-image: linear-gradient(to bottom, rgb(34, 0, 41), rgb(111, 0, 121)); border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); box-sizing: border-box; margin-top: 20px;min-height: 180px;
+        }h2#resultado {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 10px 0; font-size: 36px;text-align: center;
+        }#reiniciar {
+            background-image: linear-gradient(to bottom, #00b300, #00ff66); width: 220px; height: 80px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 20px;  box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3); cursor: pointer; text-shadow: 1px 1px 2px black; display: none;margin-top: 10px;
+        }.msg-ganaste {
+            color: lime !important;font-size: 30px !important;
+        }.msg-perdiste {
+          color: red !important;font-size: 70px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+    <h1>ADIVINA EL NUMERO</h1>
+    <h1>1 - 100</h1>
+    <button id="iniciar" class="btn">INICIAR PARTIDA</button>
+    <h2 id="intentos">INTENTOS: 10</h2>
+    <input id="respuesta" placeholder="RESPUESTA AQUÍ">
+    <button id="aceptarRespuesta" class="btn">ACEPTAR</button> 
+    <div class="resultado-card">
+    <h2 id="resultado"></h2>
+        <button id="reiniciar">INICIAR UNA NUEVA PARTIDA</button>
+        <button id="volver"style="height: 40px; width: 100px; border-radius: 20px; font-size: 20px; color: rgb(255, 254, 254); background-image: linear-gradient(to bottom, rgb(150, 0, 0), rgb(94, 0, 0)); margin-top: 40px; cursor: pointer;">VOLVER</button>
+    </div>
+    </div>
+<script>
+let iniciarNuevo = document.getElementById("reiniciar");
+let numeroElegido = Math.floor(Math.random() * 100) + 1;
+let intentosRestantes = 10;
+let intentosMostrar = document.getElementById("intentos");
+let respuestaUsuario = document.getElementById("respuesta");
+let iniciarPartida = document.getElementById("iniciar");
+let respuestaAceptar = document.getElementById("aceptarRespuesta");
+let resultadoMostrar = document.getElementById("resultado");
+let juegoIniciado = false;
+let volverBoton = document.getElementById("volver");
+function resetClases() {
+    resultadoMostrar.className = "";
+}
+iniciarPartida.addEventListener("click", function () {
+    juegoIniciado = true;
+    intentosRestantes = 10;
+    intentosMostrar.innerHTML = intentosRestantes + " INTENTOS RESTANTES";
+    resetClases();
+    resultadoMostrar.innerHTML = "";
+});
+respuestaAceptar.addEventListener("click", function () {
+    let textoPusido = respuestaUsuario.value.trim();
+    let numeroPusido = parseInt(textoPusido);
+    resetClases();
+    if (juegoIniciado === false) {
+        resultadoMostrar.innerHTML = "PRIMERO INICIA EL JUEGO";
+        return;
+    } 
+    if (textoPusido === "") {
+        resultadoMostrar.innerHTML = "NO PUEDES DEJAR LA RESPUESTA VACIA";
+        return;
+    } 
+    if (isNaN(numeroPusido)) {
+        resultadoMostrar.innerHTML = "NO ES UN NUMERO";
+        return;
+    } else if (numeroPusido > numeroElegido) {
+        resultadoMostrar.innerHTML = "EL NUMERO ES MENOR";
+        intentosRestantes--;
+        intentosMostrar.innerHTML = intentosRestantes + " INTENTOS RESTANTES";
+        respuestaUsuario.value = "";
+    } else if (numeroPusido < numeroElegido) {
+        resultadoMostrar.innerHTML = "EL NUMERO ES MAYOR";
+        intentosRestantes--;
+        intentosMostrar.innerHTML = intentosRestantes + " INTENTOS RESTANTES";
+        respuestaUsuario.value = "";
+    } else if (numeroPusido === numeroElegido) {
+        resultadoMostrar.classList.add("msg-ganaste");
+        resultadoMostrar.innerHTML = "¡GANASTE!";
+        juegoIniciado = false;
+        respuestaAceptar.style.display = "none";
+        respuestaUsuario.style.display = "none";
+        iniciarPartida.style.display = "none";
+        iniciarNuevo.style.display = "block";
+        return;
+    } 
+    if (intentosRestantes <= 0) {
+        juegoIniciado = false;
+        resultadoMostrar.classList.add("msg-perdiste");
+        resultadoMostrar.innerHTML = "PERDISTE";
+        respuestaAceptar.style.display = "none";
+        respuestaUsuario.style.display = "none";
+        iniciarPartida.style.display = "none";
+        iniciarNuevo.style.display = "block";
+    }
+});
+iniciarNuevo.addEventListener("click", function() {
+    resetClases();
+    resultadoMostrar.innerHTML = "";
+    respuestaAceptar.style.display = "inline-block";
+    respuestaUsuario.style.display = "inline-block";
+    respuestaUsuario.value = "";
+    iniciarPartida.style.display = "inline-block";
+    iniciarNuevo.style.display = "none";
+    numeroElegido = Math.floor(Math.random() * 100) + 1;
+    intentosRestantes = 10;
+    intentosMostrar.innerHTML = intentosRestantes + " INTENTOS RESTANTES";
+});
+volverBoton.addEventListener("click", function() {
+    window.location.href = "link";
+})
+</script>
+</body>
+</html>

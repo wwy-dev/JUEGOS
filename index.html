@@ -12,14 +12,12 @@
     </head>
     <body style="display: flex; justify-content: center; align-items: center; background-image: linear-gradient(to bottom, rgb(49, 0, 49), rgb(18, 0, 51) 50%, rgb(43, 0, 43) 75%, rgb(0, 4, 39)); min-height: 100vh; margin: 0;">
         <div style="height: 100%; width: 570px; background-image: linear-gradient(to bottom, rgb(0, 11, 114), rgb(0, 0, 63)); font-family: sans-serif; border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 35px; border: 1px solid rgba(255, 255, 255, 0.1); box-sizing: border-box;">
-    
     <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 40px 0; font-size: 36px;">SELECCIONA LOS JUEGOS</h1>
             <div style="height: 190px; width: 500px; background-image: linear-gradient(to bottom, rgb(114, 0, 0), rgb(63, 0, 0)); font-family: sans-serif; border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 30px;">
             <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 15px 0; font-size: 24px;">ADIVINAR EL NUMERO</h1>
             <button id="iniciar" style="background-image: linear-gradient(to bottom, #00b300, #00ff66); width: 220px; height: 42px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 20px; box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3); cursor: pointer; text-shadow: 1px 1px 2px black;">ENTRAR</button>
             <h1 id="mostrar"style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 2 15px 0; font-size: 24px;"></h1>
         </div>
-
         <div style="height: 190px; width: 500px; background-image: linear-gradient(to bottom, rgb(114, 0, 0), rgb(63, 0, 0)); font-family: sans-serif; border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 30px; margin-bottom: 30px;">
             <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 15px 0; font-size: 24px;">JUEGO CLICKER</h1>
             <button id="iniciar2" style="background-image: linear-gradient(to bottom, #00b300, #00ff66); width: 220px; height: 42px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 20px; box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3); cursor: pointer; text-shadow: 1px 1px 2px black;">ENTRAR</button>
@@ -32,50 +30,14 @@
         let botonIniciar = document.getElementById("iniciar");
         let mostrarInicio = document.getElementById("mostrar");
         botonIniciar.addEventListener("click", function () {
-            mostrarInicio.innerHTML = "INICIANDO JUEGO."
             botonIniciar.style.display = "none"
-            setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO.."
-            }, 500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO..."
-            }, 1000);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO."
-            }, 1500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO.."
-            }, 2000);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO..."
-            }, 2500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO."
-            }, 3000);             setTimeout(() => {
-                mostrarInicio.innerHTML = "ENTRANDO..."
-            }, 3500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "ENTRARAS EN UNOS SEGUNDOS..."
                 window.location.href = "./adivina-el-numero/";
-            }, 4000)
         })
         let botonIniciar2 = document.getElementById("iniciar2");
         let mostrarInicio2 = document.getElementById("mostrar2");
         botonIniciar2.addEventListener("click", function () {
-        mostrarInicio.innerHTML = "INICIANDO JUEGO."
-            botonIniciar.style.display = "none"
-            setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO.."
-            }, 500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO..."
-            }, 1000);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO."
-            }, 1500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO.."
-            }, 2000);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO..."
-            }, 2500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "INICIANDO JUEGO."
-            }, 3000);             setTimeout(() => {
-                mostrarInicio.innerHTML = "ENTRANDO..."
-            }, 3500);             setTimeout(() => {
-                mostrarInicio.innerHTML = "ENTRARAS EN UNOS SEGUNDOS..."
+            botonIniciar2.style.display = "none"
                 window.location.href = "./juego-clicker/";
-            }, 4000)
-        })
+            })
     </script>
 </html>

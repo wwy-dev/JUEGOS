@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MENU PRINCIPAL">
@@ -9,35 +9,134 @@
     <meta property="og:title" content="MENU PRINCIPAL">
     <meta property="og:description" content="MENU PRINCIPAL">
     <meta property="og:image" content="https://iili.io/C6UUZtj.jpg">
-    </head>
-    <body style="display: flex; justify-content: center; align-items: center; background-image: linear-gradient(to bottom, rgb(49, 0, 49), rgb(18, 0, 51) 50%, rgb(43, 0, 43) 75%, rgb(0, 4, 39)); min-height: 100vh; margin: 0;">
-        <div style="height: 100%; width: 570px; background-image: linear-gradient(to bottom, rgb(0, 11, 114), rgb(0, 0, 63)); font-family: sans-serif; border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 35px; border: 1px solid rgba(255, 255, 255, 0.1); box-sizing: border-box;">
-    <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 40px 0; font-size: 36px;">SELECCIONA LOS JUEGOS</h1>
-            <div style="height: 190px; width: 500px; background-image: linear-gradient(to bottom, rgb(114, 0, 0), rgb(63, 0, 0)); font-family: sans-serif; border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 30px;">
-            <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 15px 0; font-size: 24px;">ADIVINAR EL NUMERO</h1>
-            <button id="iniciar" style="background-image: linear-gradient(to bottom, #00b300, #00ff66); width: 220px; height: 42px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 20px; box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3); cursor: pointer; text-shadow: 1px 1px 2px black;">ENTRAR</button>
-            <h1 id="mostrar"style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 2 15px 0; font-size: 24px;"></h1>
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to bottom, rgb(49, 0, 49), rgb(18, 0, 51) 50%, rgb(43, 0, 43) 75%, rgb(0, 4, 39));
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .container-principal {
+            width: 100%;
+            max-width: 570px;
+            background-image: linear-gradient(to bottom, rgb(0, 11, 114), rgb(0, 0, 63));
+            border-radius: 40px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 35px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+        }
+        .titulo-menu {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            color: rgb(255, 255, 255);
+            margin: 0 0 35px 0;
+            font-size: 32px;
+            text-align: center;
+        }
+        .card-juego {
+            min-height: 190px;
+            width: 100%;
+            max-width: 500px;
+            background-image: linear-gradient(to bottom, rgb(114, 0, 0), rgb(63, 0, 0));
+            border-radius: 40px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .titulo-juego {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            color: rgb(255, 255, 255);
+            margin: 0 0 15px 0;
+            font-size: 24px;
+            text-align: center;
+        }
+        .btn-entrar {
+            background-image: linear-gradient(to bottom, #00b300, #00ff66);
+            width: 100%;
+            max-width: 220px;
+            height: 42px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3);
+            cursor: pointer;
+            text-shadow: 1px 1px 2px black;
+            touch-action: manipulation;
+            transition: transform 0.1s ease;
+        }
+        .btn-entrar:active {
+            transform: scale(0.96);
+        }
+        .texto-mostrar {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            color: rgb(255, 255, 255);
+            margin: 10px 0 0 0;
+            font-size: 20px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container-principal {
+                padding: 25px 15px;
+                border-radius: 25px;
+            }
+            .card-juego {
+                border-radius: 25px;
+            }
+            .titulo-menu {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+            .titulo-juego {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-principal">
+        <h1 class="titulo-menu">SELECCIONA LOS JUEGOS</h1>
+        <div class="card-juego">
+            <h1 class="titulo-juego">ADIVINAR EL NUMERO</h1>
+            <button id="iniciar" class="btn-entrar">ENTRAR</button>
+            <h1 id="mostrar" class="texto-mostrar"></h1>
         </div>
-        <div style="height: 190px; width: 500px; background-image: linear-gradient(to bottom, rgb(114, 0, 0), rgb(63, 0, 0)); font-family: sans-serif; border-radius: 40px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 30px; margin-bottom: 30px;">
-            <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 0 15px 0; font-size: 24px;">JUEGO CLICKER</h1>
-            <button id="iniciar2" style="background-image: linear-gradient(to bottom, #00b300, #00ff66); width: 220px; height: 42px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 20px; box-shadow: 0px 4px 10px rgba(0, 255, 102, 0.3); cursor: pointer; text-shadow: 1px 1px 2px black;">ENTRAR</button>
-            <h1 id="mostrar2"style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); color: rgb(255, 255, 255); margin: 0 2 15px 0; font-size: 24px;"></h1>
+        <div class="card-juego">
+            <h1 class="titulo-juego">JUEGO CLICKER</h1>
+            <button id="iniciar2" class="btn-entrar">ENTRAR</button>
+            <h1 id="mostrar2" class="texto-mostrar"></h1>
         </div>
-        
-        </div>
-    </body>>
+    </div>
     <script>
         let botonIniciar = document.getElementById("iniciar");
-        let mostrarInicio = document.getElementById("mostrar");
-        botonIniciar.addEventListener("click", function () {
-            botonIniciar.style.display = "none"
-                window.location.href = "./adivina-el-numero/";
-        })
         let botonIniciar2 = document.getElementById("iniciar2");
-        let mostrarInicio2 = document.getElementById("mostrar2");
+        botonIniciar.addEventListener("click", function () {
+            botonIniciar.style.display = "none";
+            window.location.href = "./adivina-el-numero/";
+        });
         botonIniciar2.addEventListener("click", function () {
-            botonIniciar2.style.display = "none"
-                window.location.href = "./juego-clicker/";
-            })
+            botonIniciar2.style.display = "none";
+            window.location.href = "./juego-clicker/";
+        });
     </script>
+</body>
 </html>

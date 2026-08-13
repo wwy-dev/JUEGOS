@@ -1,197 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="description" content="JUEGO CLICKER">
     <title>JUEGO CLICKER - JUEGO</title>
     <link rel="icon" type="image/x-icon" href="https://iili.io/C6UUZtj.jpg">
     <meta property="og:title" content="JUEGO CLICKER">
     <meta property="og:description" content="JUEGO CLICKER">
     <meta property="og:image" content="https://iili.io/C6UUZtj.jpg">
-<head>
-</head>
-<body style="
-    background-color: #0d001a;
-    display: flex;
-    flex-wrap: wrap; /* Si no cabe en pantalla, la tienda pasa abajo */
-    justify-content: center;
-    gap: 30px; /* Separación fija entre el juego y la tienda */
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    font-family: sans-serif;">
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
-        <div style="
+    <style>
+        body {
+            background-color: #0d001a;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            font-family: sans-serif;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .container-juego {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .header-card {
             background-image: linear-gradient(to bottom, rgb(0, 0, 105), rgb(102, 0, 77)); 
             display: flex; 
-            width: 400px; 
-            max-width: 90vw;
+            width: 100%; 
             border-radius: 20px; 
             align-items: center; 
             flex-direction: column;
             justify-content: center; 
-            box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.7);">
-            <h1 style="color: rgb(252, 252, 252); text-shadow: 0px 0px 3px;">JUEGO CLICKER</h1>
-            <button id="volver" style="
-                font-size: 16px; 
-                border-radius: 20px;
-                background-image: linear-gradient(to bottom, rgb(71, 0, 0), rgb(156, 0, 0));
-                width: 220px;
-                margin-bottom: 20px;
-                color: rgb(253, 250, 250);
-                cursor: pointer;
-                border: none;
-                padding: 10px;
-                font-weight: bold;">VOLVER AL MENU</button>
-        </div>
-        <div style="
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header-card h1 {
+            color: rgb(252, 252, 252); 
+            text-shadow: 0px 0px 3px black;
+            font-size: 26px;
+            margin: 10px 0;
+        }
+        .btn-volver {
+            font-size: 15px; 
+            border-radius: 20px;
+            background-image: linear-gradient(to bottom, rgb(71, 0, 0), rgb(156, 0, 0));
+            width: 80%;
+            max-width: 220px;
+            margin-bottom: 10px;
+            color: rgb(253, 250, 250);
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .card-main {
             background-image: linear-gradient(to bottom, rgb(255, 62, 62), rgb(155, 0, 0));
             display: flex;
-            width: 400px;
-            max-width: 90vw;
+            width: 100%;
             border-radius: 20px;
             align-items: center;
             flex-direction: column;
             justify-content: center; 
-            box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.7);
-            padding-bottom: 20px;">
-            <div style="
-                background-image: linear-gradient(to bottom, rgb(194, 0, 0), rgb(73, 0, 0));
-                display: flex;
-                width: 90%;
-                border-radius: 20px;
-                align-items: center;
-                flex-direction: column;
-                justify-content: center; 
-                box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.7);
-                margin-top: 20px;">
-                <h1 style="color: rgb(255, 255, 255); margin-bottom: 0;">PUNTOS TOTALES</h1>
-                <h1 id="puntosTotales" style="font-family:'Franklin Gothic Medium', Arial, sans-serif; color: aqua; margin-top: 10px;">0</h1>
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+            padding-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-sizing: border-box;
+        }
+        .stat-box {
+            background-image: linear-gradient(to bottom, rgb(194, 0, 0), rgb(73, 0, 0));
+            display: flex;
+            width: 90%;
+            border-radius: 20px;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center; 
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+            margin-top: 15px;
+            padding: 10px 0;
+        }
+        .stat-box h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .stat-value {
+            font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+            margin-top: 5px !important;
+            font-size: 32px;
+        }
+        .btn-click {
+            background-image: linear-gradient(to bottom, lime, green);
+            cursor: pointer;
+            width: 80%;
+            max-width: 200px;
+            height: 70px;
+            border-radius: 20px;
+            margin: 15px 0;
+            font-size: 28px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px 5px 0px darkgreen;
+            touch-action: manipulation;
+        }
+        .btn-click:active {
+            transform: translateY(3px);
+            box-shadow: 0px 2px 0px darkgreen;
+        }
+        .tienda-container {
+            background-image: linear-gradient(to bottom, rgb(0, 47, 150), rgb(0, 52, 112));
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 380px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            align-items: center;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+            padding: 15px;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tienda-item-title {
+            margin: 0; 
+            color: #faf8f8; 
+            font-size: 16px; 
+            margin-top: 15px;
+        }
+        .btn-comprar {
+            background-image: linear-gradient(to bottom, lime, green);
+            cursor: pointer;
+            width: 85%;
+            max-width: 200px;
+            height: 48px;
+            border-radius: 15px;
+            margin: 8px 0;
+            font-size: 16px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px 3px 0px darkgreen;
+            touch-action: manipulation;
+        }
+
+        .btn-comprar:active {
+            transform: translateY(2px);
+            box-shadow: 0px 1px 0px darkgreen;
+        }
+
+        /* 📱 REGLAS MÓVILES (SIGMA RESPONSIVE) 🐺 */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+                gap: 15px;
+            }
+            .header-card h1 {
+                font-size: 22px;
+            }
+            .stat-value {
+                font-size: 26px;
+            }
+            .btn-click {
+                height: 60px;
+                font-size: 24px;
+            }
+            .tienda-container {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-juego">
+        <div class="header-card">
+            <h1>JUEGO CLICKER</h1>
+            <button id="volver" class="btn-volver">VOLVER AL MENÚ</button>
+        </div>
+        <div class="card-main">
+            <div class="stat-box">
+                <h1 style="color: rgb(255, 255, 255);">PUNTOS TOTALES</h1>
+                <h1 id="puntosTotales" class="stat-value" style="color: aqua;">0</h1>
             </div>
-            <div style="
-                background-image: linear-gradient(to bottom, rgb(194, 0, 0), rgb(73, 0, 0));
-                display: flex;
-                width: 90%;
-                border-radius: 20px;
-                align-items: center;
-                flex-direction: column;
-                justify-content: center; 
-                box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.7);
-                margin-top: 20px;">
-                <h1 style="font-family:'Franklin Gothic Medium', Arial, sans-serif; color: rgb(248, 248, 248); margin-bottom: 0;">PUNTOS POR CLICK</h1>
-                <h1 id="puntosPorClicks" style="font-family:'Franklin Gothic Medium', Arial, sans-serif; color: rgb(0, 255, 21); margin-top: 10px;">1</h1>
+            <div class="stat-box">
+                <h1 style="color: rgb(248, 248, 248);">PUNTOS POR CLICK</h1>
+                <h1 id="puntosPorClicks" class="stat-value" style="color: rgb(0, 255, 21);">1</h1>
             </div>
-            <div style="
-                background-image: linear-gradient(to bottom, rgb(194, 0, 0), rgb(73, 0, 0));
-                display: flex;
-                width: 90%;
-                border-radius: 20px;
-                align-items: center;
-                flex-direction: column;
-                justify-content: center; 
-                box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.7);
-                margin-top: 20px;">
-                <h1 style="font-family:'Franklin Gothic Medium', Arial, sans-serif; color: rgb(248, 248, 248); text-align: center; font-size: 20px; margin-top: 15px;">CLICK PARA GANAR PUNTOS</h1>
-                <button id="clickParaGanarPuntos" style="
-                    background-image: linear-gradient(to bottom, lime, green);
-                    cursor: pointer;
-                    width: 150px;
-                    height: 70px;
-                    border-radius: 20px;
-                    margin: 15px 0;
-                    font-size: 30px;
-                    border: none;
-                    color: white;
-                    font-weight: bold;
-                    box-shadow: 0px 5px 0px darkgreen;">CLICK</button>
+            <div class="stat-box">
+                <h1 style="color: rgb(248, 248, 248); text-align: center; font-size: 16px; margin-top: 5px;">CLICK PARA GANAR PUNTOS</h1>
+                <button id="clickParaGanarPuntos" class="btn-click">CLICK</button>
             </div>
         </div>
     </div>
-    <div style="
-        background-image: linear-gradient(to bottom, rgb(0, 47, 150), rgb(0, 52, 112));
-        display: flex;
-        flex-direction: column;
-        width: 280px;
-        max-width: 90vw;
-        max-height: 85vh;
-        overflow-y: auto;
-        border-radius: 20px;
-        align-items: center;
-        box-shadow: 12px 12px 20px rgba(0,0,0,0.5);
-        padding: 15px;">
-        <h1 style="margin: 0; color: #f8f6f6; font-size: 30px;">TIENDA</h1>
-        <h1 style="margin: 0; color: #faf8f8; font-size: 18px; margin-top: 20px;">+1 punto / click</h1>
-        <button id="comprar1" style="
-            background-image: linear-gradient(to bottom, lime, green);
-            cursor: pointer;
-            width: 160px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            border: none;
-            color: white;
-            font-weight: bold;">100 CLICKS</button>
-        <h1 style="margin: 0; color: #faf8f8; font-size: 18px; margin-top: 15px;">+10 puntos / click</h1>
-        <button id="comprar2" style="
-            background-image: linear-gradient(to bottom, lime, green);
-            cursor: pointer;
-            width: 160px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            border: none;
-            color: white;
-            font-weight: bold;">1k CLICKS</button>
-        <h1 style="margin: 0; color: #faf8f8; font-size: 18px; margin-top: 15px;">+100 puntos / click</h1>
-        <button id="comprar3" style="
-            background-image: linear-gradient(to bottom, lime, green);
-            cursor: pointer;
-            width: 160px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            border: none;
-            color: white;
-            font-weight: bold;">25k CLICKS</button>
-        <h1 style="margin: 0; color: #faf8f8; font-size: 18px; margin-top: 15px;">+1000 puntos / click</h1>
-        <button id="comprar4" style="
-            background-image: linear-gradient(to bottom, lime, green);
-            cursor: pointer;
-            width: 160px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            border: none;
-            color: white;
-            font-weight: bold;">250k CLICKS</button>
-        <h1 style="margin: 0; color: #faf8f8; font-size: 18px; margin-top: 15px;">+10k puntos / click</h1>
-        <button id="comprar5" style="
-            background-image: linear-gradient(to bottom, lime, green);
-            cursor: pointer;
-            width: 160px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            border: none;
-            color: white;
-            font-weight: bold;">2.5M CLICKS</button>
-        <h1 style="margin: 0; color: #faf8f8; font-size: 18px; margin-top: 15px;">+100k puntos / click</h1>
-        <button id="comprar6" style="
-            background-image: linear-gradient(to bottom, lime, green);
-            cursor: pointer;
-            width: 160px;
-            height: 50px;
-            border-radius: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            border: none;
-            color: white;
-            font-weight: bold;">25M CLICKS</button>
+    <div class="tienda-container">
+        <h1 style="margin: 0; color: #f8f6f6; font-size: 26px;">TIENDA</h1>
+        <h1 class="tienda-item-title">+1 punto / click</h1>
+        <button id="comprar1" class="btn-comprar">100 CLICKS</button>
+        <h1 class="tienda-item-title">+10 puntos / click</h1>
+        <button id="comprar2" class="btn-comprar">1k CLICKS</button>
+        <h1 class="tienda-item-title">+100 puntos / click</h1>
+        <button id="comprar3" class="btn-comprar">25k CLICKS</button>
+        <h1 class="tienda-item-title">+1000 puntos / click</h1>
+        <button id="comprar4" class="btn-comprar">250k CLICKS</button>
+        <h1 class="tienda-item-title">+10k puntos / click</h1>
+        <button id="comprar5" class="btn-comprar">2.5M CLICKS</button>
+        <h1 class="tienda-item-title">+100k puntos / click</h1>
+        <button id="comprar6" class="btn-comprar">25M CLICKS</button>
     </div>
 <script>
 let comprar1 = document.getElementById("comprar1");
@@ -204,8 +228,10 @@ let puntosTotales = document.getElementById("puntosTotales");
 let puntosPorClick = document.getElementById("puntosPorClicks");
 let clickParaGanarPuntos = document.getElementById("clickParaGanarPuntos");
 let volver = document.getElementById("volver");
+
 let puntos = 0;
 let puntosAlClikear = 1;
+
 if(volver) {
     volver.addEventListener("click", function() {
         window.location.href = "https://wwy-dev.github.io/JUEGOS/";

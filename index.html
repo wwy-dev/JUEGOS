@@ -125,17 +125,31 @@
             <button id="iniciar2" class="btn-entrar">ENTRAR</button>
             <h1 id="mostrar2" class="texto-mostrar"></h1>
         </div>
+        <div class="card-juego">
+            <h1 class="titulo-juego">TEST DE REFLEJOS</h1>
+            <button id="iniciar3" class="btn-entrar">ENTRAR</button>
+            <h1 id="mostrar3" class="texto-mostrar"></h1>
+        </div>
     </div>
+
     <script>
         let botonIniciar = document.getElementById("iniciar");
         let botonIniciar2 = document.getElementById("iniciar2");
+        let botonIniciar3 = document.getElementById("iniciar3");
+
         botonIniciar.addEventListener("click", function () {
             botonIniciar.style.display = "none";
             window.location.href = "./adivina-el-numero/";
         });
+
         botonIniciar2.addEventListener("click", function () {
             botonIniciar2.style.display = "none";
             window.location.href = "./juego-clicker/";
+        });
+
+        botonIniciar3.addEventListener("click", function () {
+            botonIniciar3.style.display = "none";
+            window.location.href = "./test-de-reflejos/";
         });
     </script>
 </body>

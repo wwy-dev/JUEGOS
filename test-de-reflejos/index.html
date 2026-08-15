@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TEST DE REFLEJOS - JUEGO">
+    <title>TEST DE REFLEJOS - JUEGO</title>
+    <link rel="icon" type="image/x-icon" href="https://iili.io/C6UUZtj.jpg">
+    <meta property="og:title" content="TEST DE REFLEJOS - JUEGO">
+    <meta property="og:description" content="TEST DE REFLEJOS - JUEGO">
+    <meta property="og:image" content="https://iili.io/C6UUZtj.jpg">
+</head>
+<body style="
+    background-image: linear-gradient(to bottom, rgb(112, 255, 255), rgb(0, 100, 100));
+    margin: 0;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;">
+
+    <div style="
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: center; 
+    background-image: linear-gradient(to bottom, rgb(6, 0, 58), rgb(67, 0, 139)); 
+    width: 350px; 
+    min-height: 400px; 
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 30px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);">
+
+    <button id="regresar" style="
+    background-color: rgb(255, 0, 0); 
+    width: 160px; 
+    height: 70px; 
+    font-size: 24px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    margin: 20px 0;
+    border: 4px solid rgb(78, 0, 0);
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+    color: white;">REGRESAR</button>
+
+    <h1 style="
+    color: rgb(253, 253, 253); 
+    font-size: 22px; 
+    text-align: center;">TEST DE REFLEJOS<br><br>CADA 1000 MS ES 1 SEGUNDO</h1>
+
+    <button id="iniciar" style="
+    background-color: rgb(255, 244, 87); 
+    width: 160px; 
+    height: 70px; 
+    font-size: 24px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    margin: 20px 0;
+    border: 4px solid rgb(78, 77, 0);
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.4);">INICIAR</button>
+    </div>
+
+    <div style="
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-image: linear-gradient(to bottom, rgba(199, 179, 0, 0.938), rgb(255, 217, 0)); 
+    width: 350px; 
+    height: 120px;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 30px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);">
+
+    <button id="botonRapido" style="
+    background-color: rgb(106, 255, 87); 
+    width: 160px; 
+    height: 70px; 
+    font-size: 24px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    display: none; 
+    border: 4px solid rgb(3, 78, 0);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);">CLICK</button>
+    </div>
+    
+    <div style="
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: center; 
+    background-image: linear-gradient(to bottom, rgb(100, 0, 0), rgb(43, 0, 0)); 
+    width: 200px; 
+    min-height: 20px; 
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 30px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);">
+
+    <h1 id="esperando" style="
+    color: rgb(253, 253, 253); 
+    font-size: 22px; 
+    text-align: center;">ESPERANDO...</h1>
+    </div>
+    <script>
+
+let botonIniciar = document.getElementById("iniciar");
+let avisarConteo = document.getElementById("esperando");
+let botonRapido = document.getElementById("botonRapido");
+let tiempoInicio = 0
+let botonRegresar = document.getElementById("regresar")
+
+botonIniciar.addEventListener("click", function () {
+    setTimeout(() => {
+       avisarConteo.innerHTML = "PREPARADO"
+       botonIniciar.style.display = "none"
+    }, 200);
+    setTimeout(() => {
+       avisarConteo.innerHTML = "4"
+    }, 1000);
+    setTimeout(() => {
+       avisarConteo.innerHTML = "3"
+    }, 2000);
+    setTimeout(() => {
+       avisarConteo.innerHTML = "2"
+    }, 3000);
+    setTimeout(() => {
+       avisarConteo.innerHTML = "1"
+    }, 4000);
+    setTimeout(() => {
+       avisarConteo.innerHTML = "0"
+    }, 5000);
+    setTimeout(() => {
+        avisarConteo.innerHTML = "";
+    }, 6000)
+    setTimeout(() => {
+        tiempoInicio = Date.now();
+        botonRapido.style.display = "block"
+    }, 8000)
+})
+botonRapido.addEventListener("click", function () {
+    let tiempoFinal = Date.now();
+    let resultadoTiempo = tiempoFinal - tiempoInicio
+    avisarConteo.innerHTML = "TIEMPO DE REACCION: " + resultadoTiempo + " MS"
+    botonRapido.style.display = "none"
+    setTimeout(() => {
+        avisarConteo.innerHTML = "EMPEZANDO UNA NUEVA PARTIDA EN UNOS SEGUNDOS..."
+    }, 3500);
+    setTimeout(() => {
+        avisarConteo.innerHTML = "ESPERANDO..."
+        botonIniciar.style.display = "block"
+    }, 5500);
+})
+botonRegresar.addEventListener("click", function () {
+    window.location.href = "https://wwy-dev.github.io/JUEGOS/";
+})
+    </script>
+</body>
+</html>

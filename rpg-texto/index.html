@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>JUEGO RPG (TEXTO)</title>
+    </head>
+    <body style="font-family: sans-serif; margin: 0; padding: 0; display: flex; justify-content: space-between;
+    background-color: rgb(2, 0, 34);">
+
+ <div style="background-image: linear-gradient(to bottom, lightgray, gray);
+        padding: 10px;
+        border-radius: 20px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;">
+
+            <h1 style="background-image: linear-gradient(to bottom, rgb(255, 240, 25), rgb(209, 224, 0));
+            padding: 5px;
+            width: 230px;
+            border-radius: 20px;
+            text-align: center;"
+            id="nombreMostrar">TU NOMBRE</h1>
+
+            <h1 id="vidaMostrarJugador" style="background-image: linear-gradient(to bottom, rgb(0, 197, 0), lime);
+            padding: 5px;
+            width: 220px;
+            border-radius: 20px;
+            text-align: center;">VIDA: 100/100</h1>
+
+            <h1 id="energiaMostrarJugador" style="background-image: linear-gradient(to bottom, rgb(0, 184, 197), rgb(0, 122, 131));
+            padding: 5px;
+            width: 285px;
+            border-radius: 20px;
+            text-align: center;">ENERGIA: 500/500</h1>
+
+            <h1 id="cargaMostrarJugador" style="background-image: linear-gradient(to bottom, rgb(247, 5, 5), rgb(255, 65, 65));
+            padding: 5px;
+            width: 290px;
+            border-radius: 20px;
+            text-align: center;">CARGA: 0/50</h1>
+
+            <h1 id="recargaMostrarJugador" style="background-image: linear-gradient(to bottom, rgb(5, 247, 86), rgb(65, 255, 65));
+            padding: 5px;
+            width: 290px;
+            border-radius: 20px;
+            text-align: center;">RECARGA: 0/500</h1>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%;">
+                <button id="skill" style="background-image: linear-gradient(to bottom, rgb(252, 251, 251), rgb(173, 172, 172));
+                padding: 5px;
+                width: 200px;
+                border-radius: 30px;
+                border: 1px;
+                cursor: pointer;
+                font-size: 30px;
+                display: none;">SKILL</button>
+
+                <button id="definitiva" style="background-image: linear-gradient(to bottom, rgb(243, 193, 27), rgb(112, 82, 0));
+                padding: 5px;
+                width: 200px;
+                border-radius: 30px;
+                border: 1px;
+                cursor: pointer;
+                font-size: 30px;
+                display: none;">DEFINITIVA</button>
+
+                <button id="iniciar" style="background-image: linear-gradient(to bottom, rgb(0, 230, 115), rgb(0, 153, 77));
+                padding: 5px;
+                width: 200px;
+                border-radius: 30px;
+                border: 1px;
+                cursor: pointer;
+                font-size: 30px;
+                color: white;
+                display: none;">INICIAR</button>
+
+                <button id="nombre" style="background-image: linear-gradient(to bottom, rgb(0, 230, 115), rgb(0, 153, 77));
+                padding: 5px;
+                width: 200px;
+                border-radius: 30px;
+                border: 1px;
+                cursor: pointer;
+                font-size: 30px;
+                color: white;
+                display: block;">ACEPTAR</button>
+
+                <input id="nombreInput" placeholder="ESCRIBE TU NOMBRE" style="text-align: center;
+                width: 190px;
+                height: 30px;
+                border-radius: 20px;
+                border: 0px;"
+                maxlength="10"></input>
+
+                <button id="curar" style="background-image: linear-gradient(to bottom, rgb(0, 230, 50), rgb(0, 153, 0));
+                padding: 5px;
+                width: 200px;
+                border-radius: 30px;
+                border: 1px;
+                cursor: pointer;
+                font-size: 30px;
+                color: rgb(0, 0, 0);
+                display: none;">CURAR</button>
+            </div>
+        </div>
+
+        <div id="panelCentral" style="position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-image: linear-gradient(to bottom, #444, #2a2a2a);
+        padding: 10px;
+        border-radius: 20px;
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 3px solid rgb(206, 206, 206);
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.5);">
+        <h1 id="consejos" style="background-image: linear-gradient(to bottom, rgb(145, 145, 145), rgb(219, 219, 219));
+            padding: 10px;
+            width: 380px;
+            border-radius: 20px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 24px;
+            margin: 5px 0;
+            display: block;">CONSEJO:</h1>
+            <h1 id="consolaEnergia" style="background-image: linear-gradient(to bottom, rgb(32, 146, 240), rgb(5, 238, 255));
+            padding: 10px;
+            width: 380px;
+            border-radius: 20px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 24px;
+            margin: 5px 0;
+            display: none;">PELIGRO, POCA ENERGIA</h1>
+            <h1 id="consolaVida" style="background-image: linear-gradient(to bottom, rgb(240, 226, 32), rgb(255, 209, 5));
+            padding: 10px;
+            width: 380px;
+            border-radius: 20px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 24px;
+            margin: 5px 0;
+            display: none;">PELIGRO, POCA VIDA</h1>
+            <h1 id="consolaDeBatalla" style="background-image: linear-gradient(to bottom, rgb(32, 240, 67), rgb(42, 150, 0));
+            padding: 10px;
+            width: 380px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin: 5px 0;">ESTADO: [ESPERANDO]</h1>
+            <h1 id="eventosDeBatalla" style="background-image: linear-gradient(to bottom, rgb(32, 240, 67), rgb(42, 150, 0));
+            padding: 10px;
+            width: 380px;
+            border-radius: 20px;
+            text-align: center;
+            color: rgb(3, 3, 3);
+            font-size: 24px;
+            margin: 5px 0;">EVENTOS DE BATALLA:</h1>
+            <h1 id="skillEnemigo" style="background-image: linear-gradient(to bottom, red, brown);
+            padding: 10px;
+            width: 380px;
+            border-radius: 20px;
+            text-align: center;
+            color: rgb(3, 3, 3);
+            font-size: 24px;
+            margin: 5px 0;">TE AFECTA</h1>
+        </div>
+
+        <div style="background-image: linear-gradient(to bottom, lightgray, gray);
+        padding: 10px;
+        border-radius: 20px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;">
+            <h1 style="background-image: linear-gradient(to bottom, rgb(255, 25, 25), rgb(224, 0, 0));
+            padding: 5px;
+            width: 230px;
+            border-radius: 20px;
+            text-align: center;"
+            id="nombreEnemigo">ENEMIGO</h1>
+            <h1 id="vidaMostrarEnemigo" style="background-image: linear-gradient(to bottom, rgb(0, 197, 181), rgb(0, 255, 255));
+            padding: 5px;
+            width: 220px;
+            border-radius: 20px;
+            text-align: center;">VIDA: 100/100</h1>
+            <h1 id="rareza" style="background-image: linear-gradient(to bottom, rgb(212, 255, 251), rgb(226, 255, 255));
+            padding: 5px;
+            width: 250px;
+            border-radius: 20px;
+            text-align: center;">DIFICULTAD:</h1>
+            <button id="regresar" style="background-color: #ff3333; color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 200px; height: 50px; font-size: 25px; text-align: center; border-radius: 20px;">REGRESAR</button>
+
+        </div>
+
+
+
+        <script>
+
+let regresar = document.getElementById("regresar");
+let nombreMostrar = document.getElementById("nombreMostrar");
+let nombreBoton = document.getElementById("nombre");
+let nombreInput = document.getElementById("nombreInput");
+let consejosMostrar = document.getElementById("consejos");
+let energiaVerificar = document.getElementById("consolaEnergia");
+let vidaVerificar = document.getElementById("consolaVida");
+let consolaEnemigo = document.getElementById("skillEnemigo");
+let consolaDeBatalla = document.getElementById("consolaDeBatalla")
+let eventosDeBatalla = document.getElementById("eventosDeBatalla")
+let iniciarBoton = document.getElementById("iniciar");
+let vidaElegida = "";
+let playerHP = 100;
+let playerE = 500;
+let playerC = 0;
+let bichoHP = 1;
+let playerRegenHP = 0;
+let dmgNormal = 0;
+let dmgEnemigo = 0;
+let nombreBichoMostrar = document.getElementById("nombreEnemigo");
+let vidaBichoMostrar = document.getElementById("vidaMostrarEnemigo");
+let rarezaBicho = document.getElementById("rareza")
+let recargaMostrarJugador = document.getElementById("recargaMostrarJugador");
+let curarBoton = document.getElementById("curar");
+let skillBoton = document.getElementById("skill");
+let definitivaBoton = document.getElementById("definitiva");
+let cargaMostrar = document.getElementById("cargaMostrarJugador");
+let energiaMostrar = document.getElementById("energiaMostrarJugador");
+let vidaMostrar = document.getElementById("vidaMostrarJugador");
+let consejoElegido = "";
+
+function sacarNombre() {
+    if (nombreInput.value.trim() === "") {
+        nombreMostrar.innerHTML = "NO PUEDES DEJAR TU NOMBRE VACIO";
+        setTimeout(() => {
+            nombreMostrar.innerHTML = "TU NOMBRE";
+        }, 1000)
+    } else if (isNaN(nombreInput.value)) {
+        nombreMostrar.innerHTML = nombreInput.value;
+        nombreBoton.style.display = "none";
+        iniciarBoton.style.display = "block";
+        nombreInput.style.display = "none";
+    } else {
+        nombreMostrar.innerHTML = "TU NOMBRE DEBE DE EMPEZAR CON LETRAS"
+    }
+}
+function elegirConsejos() {
+    const consejos = ["LOS GOLPES CRITICOS PUEDEN OTORGARTE ALGUNOS BENEFICIOS.", "NECESITAS 10 DE RECARGA PARA CURARTE", "PARA LANZAR LA DEFINITIVA NECESITAS MINIMO 10 DE CARGA", "LOS GOLPES BASICOS [SKILL] CUESTAN 25 DE ENERGIA"];
+    let mensajesElegir = Math.floor(Math.random() * consejos.length);
+    consejoElegido = consejos[mensajesElegir];
+    consejosMostrar.innerHTML = consejoElegido;
+}
+setTimeout(() => {
+    elegirConsejos();
+}, 1)
+setInterval(elegirConsejos, 30000);
+function sacarBichoVidaNombre() {
+    const nombreBicho = ["Jabalí", "Jaguar", "Coyote", "Puma"];
+    let elegirNombre = Math.floor(Math.random() * nombreBicho.length);
+    let nombreElegido = nombreBicho[elegirNombre]
+
+    const vidaBicho = ["100", "300", "500", "700", "1000"];
+    let elegirVida = Math.floor(Math.random() * vidaBicho.length);
+    vidaElegida = parseInt(vidaBicho[elegirVida]);
+    bichoHP = vidaElegida
+
+    nombreBichoMostrar.innerHTML = nombreElegido;
+    vidaBichoMostrar.innerHTML = "VIDA: " + bichoHP + "/" + vidaElegida
+    if (vidaElegida == "100") {
+rarezaBicho.innerHTML = "DIFICULTAD: [MUY FACIL]";
+rarezaBicho.style.color = "lime"
+    } else if (vidaElegida == "300") {
+rarezaBicho.innerHTML = "DIFICULTAD: [FACIL]";
+rarezaBicho.style.color = "green"
+    } else if (vidaElegida == "500") {
+rarezaBicho.innerHTML = "DIFICULTAD: [MEDIO]";
+rarezaBicho.style.color = "blue"
+    } else if (vidaElegida == "700") {
+rarezaBicho.innerHTML = "DIFICULTAD: [DIFICIL]";
+rarezaBicho.style.color = "purple"
+    } else {
+rarezaBicho.innerHTML = "DIFICULTAD: [MUY DIFICIL]";
+rarezaBicho.style.color = "gold"
+    }
+}
+function habilitarSkill() {
+    if (playerE >= 25) {
+        playerE -= 25;
+        let generarCarga = Math.floor(Math.random() * 5) + 1;
+        playerRegenHP += 1;
+        playerRegenHP = Math.min(playerRegenHP, 500);
+        recargaMostrarJugador.innerHTML = "RECARGA: " + playerRegenHP + "/500"
+        playerC = playerC + generarCarga
+        energiaMostrar.innerHTML = "ENERGIA: " + playerE + "/500"
+        let generarDmg = Math.floor(Math.random() * (15 - 20) + 15);
+eventosDeBatalla.innerHTML = "USASTE: HABILIDAD";
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, lime, green)"
+        let probC = Math.floor(Math.random() * 100) + 1;
+        if (probC <= 15) {
+eventosDeBatalla.innerHTML = "DAÑO CRITICO: HABILIDAD: +50 ENERGIA";
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, yellow, gold)"
+eventosDeBatalla.style.color = "black"
+            generarDmg = generarDmg * 4;
+            playerE += 50
+                    playerE = Math.min(playerE, 500)
+                    energiaMostrar.innerHTML = "ENERGIA: " + playerE + "/500"
+                    playerC += 5
+        } else if (probC <= 25) {
+eventosDeBatalla.innerHTML = "DAÑO CRITICO: HABILIDAD: +25 ENERGIA";
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, yellow, gold)"
+eventosDeBatalla.style.color = "black"
+            generarDmg = generarDmg * 2;
+            playerE += 25
+                    energiaMostrar.innerHTML = "ENERGIA: " + playerE + "/500"
+                    playerC += 2
+        }
+        bichoHP = Math.max(0, bichoHP - generarDmg);
+        vidaBichoMostrar.innerHTML = "VIDA: " + bichoHP + "/" + vidaElegida
+        playerC = Math.min(playerC, 50);
+        cargaMostrar.innerHTML = "CARGA: " + playerC + "/ 50"
+        verificarEnergia();
+    } else  {
+eventosDeBatalla.innerHTML = "ERROR: FALTA ENERGIA";
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, red, brown)"
+    }
+}
+function criticoDeUlti() {
+let probCUlti = Math.floor(Math.random() * 100) + 1;
+if (probCUlti <= 15) {
+    dmgNormal = dmgNormal * 2;
+playerC += 10;
+eventosDeBatalla.innerHTML = "DAÑO CRITICO: DEFINITIVA"
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, yellow, gold)"
+eventosDeBatalla.style.color = "black"
+    playerRegenHP = playerRegenHP + 10
+    playerRegenHP = Math.min(playerRegenHP, 500);
+    recargaMostrarJugador.innerHTML = "RECARGA: " + playerRegenHP + "/500"
+} else if (probCUlti <= 45) {
+    playerRegenHP = playerRegenHP + 10
+    playerRegenHP = Math.min(playerRegenHP, 500);
+    recargaMostrarJugador.innerHTML = "RECARGA: " + playerRegenHP + "/500"
+}}
+function habilitarUlti() {
+if (playerC < 10) {
+    eventosDeBatalla.innerHTML = "ERROR: FALTA CARGA"
+    eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, red, brown)"
+    return;
+}
+    dmgNormal = Math.floor(Math.random() * (30 - 15 + 1) + 15);
+
+    if (playerC >= 50) {
+    dmgNormal = dmgNormal + 45
+playerRegenHP += 10
+playerC -= 50;
+    } else if (playerC >= 40) {
+    dmgNormal = dmgNormal + 30
+playerRegenHP += 10
+playerC -= 40;
+    } else if (playerC >= 25) {
+    dmgNormal = dmgNormal + 15
+playerRegenHP += 10
+playerC -= 25
+
+    } else if (playerC >= 10) {
+        playerRegenHP += 5
+        playerC -= 10
+}
+    criticoDeUlti();
+eventosDeBatalla.innerHTML = "USASTE: DEFINITIVA";
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, lime, green)"
+playerC = Math.min(playerC, 50);
+playerRegenHP = Math.min(playerRegenHP, 500);
+bichoHP = Math.max(0, bichoHP - dmgNormal);
+vidaBichoMostrar.innerHTML = "VIDA: " + bichoHP + "/" + vidaElegida;
+cargaMostrar.innerHTML = "CARGA: " + playerC + "/50"
+recargaMostrarJugador.innerHTML = "RECARGA: " + playerRegenHP + "/500"
+}
+function habilidadEnemigo() {
+dmgEnemigo = Math.floor(Math.random() * 9) + 5;
+playerHP = Math.max(0, playerHP - dmgEnemigo)
+consolaEnemigo.innerHTML = "DAÑO DE ENEMIGO: -" + dmgEnemigo + " DE VIDA!"
+vidaMostrar.innerHTML = "VIDA: " + playerHP + "/100"
+verificarVida();
+verificarVidaJugador();
+}
+function regenerarHP() {
+    if (playerRegenHP >= 10) {
+let nuevaHP = 25;
+
+let probCurar = Math.floor(Math.random() * 100) + 1;
+if (probCurar <= 25) {
+    nuevaHP = nuevaHP * 2;
+    eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, yellow, gold)"
+    eventosDeBatalla.innerHTML = "USASTE [CURAR] (CRITICO) +" + nuevaHP + " DE VIDA"
+}
+playerRegenHP -= 10;
+let HPTotal = Math.min(playerHP + nuevaHP, 100);
+playerHP = HPTotal;
+vidaMostrar.innerHTML = "VIDA: " + playerHP + "/100";
+consolaEnemigo.innerHTML = "USASTE [CURAR] TE CURASTE +" + nuevaHP + " HP!";
+eventosDeBatalla.innerHTML = "USASTE [CURAR] +" + nuevaHP + " DE VIDA"
+recargaMostrarJugador.innerHTML = "RECARGA: " + playerRegenHP + "/500"
+        let energiaNueva = 50;
+        playerE = Math.min(playerE + energiaNueva, 500);
+
+verificarVida();
+    } else {
+eventosDeBatalla.innerHTML = "ERROR: FALTA RECARGA";
+eventosDeBatalla.style.backgroundImage = "linear-gradient(to bottom, red, brown)"
+    }
+}
+function verificarVida() {
+    if (playerHP <= 30) {
+vidaVerificar.style.display = "block"
+    } else if (playerHP >= 31) {
+        vidaVerificar.style.display = "none";
+    }
+}
+function verificarMobMuerto() {
+    if (bichoHP <= 0) {
+        playerHP = 100;
+playerE = 500;
+playerC = 0;
+bichoHP = 1;
+playerRegenHP = 0;
+dmgNormal = 0;
+dmgEnemigo = 0;
+skillBoton.style.display = "none";
+definitivaBoton.style.display = "none";
+curarBoton.style.display = "none";
+iniciarBoton.style.display = "block"
+consolaEnemigo.innerHTML =  "TE AFECTA"
+consolaDeBatalla.innerHTML = "ESTADO: [ESPERANDO]"
+eventosDeBatalla.innerHTML = "EVENTOS DE BATALLA:"
+    }
+}
+function verificarEnergia() {
+    if (playerE <= 100) {
+        energiaVerificar.style.display = "block";
+    } else {
+        energiaVerificar.style.display = "none"
+    }
+}
+function verificarVidaJugador() {
+    if (playerHP <= 0) {
+        playerE = 500;
+playerC = 0;
+bichoHP = 0;
+playerRegenHP = 0;
+dmgNormal = 0;
+dmgEnemigo = 0;
+poderCurar = true
+skillBoton.style.display = "none";
+definitivaBoton.style.display = "none";
+curarBoton.style.display = "none";
+iniciarBoton.style.display = "block"
+consolaEnemigo.innerHTML =  "TE AFECTA"
+consolaDeBatalla.innerHTML = "[ESTADO: [ESPERANDO]]"
+eventosDeBatalla.innerHTML = "EVENTOS DE BATALLA:"
+    }
+}
+
+iniciarBoton.addEventListener("click", function() {
+    sacarBichoVidaNombre();
+    iniciarBoton.style.display = "none";
+    definitivaBoton.style.display = "block";
+    skillBoton.style.display = "block";
+    curarBoton.style.display = "block"
+    consolaDeBatalla.innerHTML = "ESTADO: [INICIADO]"
+    eventosDeBatalla.innerHTML = "EVENTOS DE BATALLA";
+playerHP = 100;
+playerE = 500;
+playerC = 0;
+playerRegenHP = 0;
+vidaMostrar.innerHTML = "VIDA: 100/100";
+cargaMostrar.innerHTML = "CARGA: 0/50";
+energiaMostrar.innerHTML = "ENERGIA: 500/500";
+recargaMostrarJugador.innerHTML = "RECARGA: 0/500"
+
+})
+definitivaBoton.addEventListener("click", function() {
+    if (playerC >= 10) {
+        habilitarUlti();
+    definitivaBoton.style.display = "none";
+    skillBoton.style.display = "none";
+    
+    setTimeout(() => {
+        if (bichoHP > 0) {
+        curarBoton.style.display = "block";
+            definitivaBoton.style.display = "block";
+    skillBoton.style.display = "block";
+        } else {
+            verificarMobMuerto();
+            verificarVidaJugador();
+        }
+    }, 1000);
+}
+})
+skillBoton.addEventListener("click", function() {
+    habilitarSkill();
+        definitivaBoton.style.display = "none";
+    skillBoton.style.display = "none";
+    setTimeout(() => {
+        if (bichoHP > 0) {
+                curarBoton.style.display = "block";
+            definitivaBoton.style.display = "block";
+    skillBoton.style.display = "block";
+        } else {
+            verificarMobMuerto();
+            verificarVidaJugador();
+        }
+    }, 1000);
+        setTimeout(() => {
+            if (bichoHP > 0) {
+habilidadEnemigo();
+            }
+    }, 500)
+})
+curarBoton.addEventListener("click", function() {
+    regenerarHP();
+})
+nombreBoton.addEventListener("click", sacarNombre)
+regresar.addEventListener("click", function () {
+    window.location.href = "https://wwy-dev.github.io/JUEGOS/";
+})
+        </script>
+    </body>
+</html>

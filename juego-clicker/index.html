@@ -23,6 +23,7 @@ justify-self: center;
 width: fit-content;
 height: fit-content;
 flex-direction: column;
+    touch-action: manipulation;
 }
 .divPrincipal {
     background-image: linear-gradient(to bottom, rgb(255, 213, 134), rgb(255, 190, 92));
@@ -35,6 +36,7 @@ flex-direction: column;
     width: fit-content;
     height: fit-content;
     flex-direction: column;
+    touch-action: manipulation;
 }
 .divComprar {
     background-image: linear-gradient(to bottom, rgb(134, 217, 255), rgb(92, 190, 255));
@@ -47,6 +49,7 @@ flex-direction: column;
     width: fit-content;
     height: fit-content;
     flex-direction: column;
+    touch-action: manipulation;
 }
 .comprarBoton {
 background-image: linear-gradient(to bottom, gold, rgb(187, 153, 1));
@@ -56,6 +59,7 @@ border-radius: 10px;
 cursor: pointer;
 border: 5px solid rgb(155, 113, 7);
 margin: 10px;
+touch-action: manipulation;
 }
 .acomprarBoton {
 background-image: linear-gradient(to bottom, rgb(153, 0, 255), rgb(187, 1, 156));
@@ -65,21 +69,22 @@ border-radius: 10px;
 cursor: pointer;
 border: 5px solid rgb(155, 7, 135);
 margin: 10px;
+touch-action: manipulation;
 }
         </style>
-        <body style="font-family: sans-serif; background-image: linear-gradient(to bottom, rgb(4, 1, 7), rgb(0, 6, 26)); min-height: 100vh; background-repeat: no-repeat; margin: 0px; overflow: hidden;">
+        <body style="font-family: sans-serif; background-image: linear-gradient(to bottom, rgb(4, 1, 7), rgb(0, 6, 26)); min-height: 100vh; background-repeat: no-repeat; margin: 0px; overflow: hidden; overscroll-behavior: none; touch-action: none; ">
 <div class="tituloDiv" id="divPrincipalRegresar">
 <h1>JUEGO CLICKER</h1>
-<button id="regresarMenu" style="height: fit-content; width: fit-content; display: flex; align-self: center; padding: 10px; font-size: 20px; font-weight: bold; cursor: pointer; background-image: linear-gradient(to bottom, rgb(255, 37, 37), rgb(187, 0, 0)); border: 5px solid rgb(156, 0, 0); border-radius: 20px;">REGRESAR AL MENU</MENU></button>
+<button id="regresarMenu" style="height: fit-content; width: fit-content; display: flex; align-self: center; padding: 10px; font-size: 20px; font-weight: bold; cursor: pointer; background-image: linear-gradient(to bottom, rgb(255, 37, 37), rgb(187, 0, 0)); border: 5px solid rgb(156, 0, 0); border-radius: 20px; touch-action: manipulation;">REGRESAR AL MENU</MENU></button>
 </div>
 <div class="divPrincipal" id="divPrincipalMostrar" style="display: flex;">
     <h1 style="align-self: center;" id="puntosTotales">0 PTS</h1>
     <h1 style="align-self: center;" id="puntosSeg">0/SEG</h1>
     <h1 style="align-self: center;" id="puntosClick">0 [POR CLICK]</h1>
-    <button id="click" style="padding: 20px; font-size: 15px; border-radius: 20px; background-image: linear-gradient(to bottom, rgb(33, 255, 33), rgb(0, 136, 0)); border: 5px solid green; cursor: pointer;">PRESIONAR PARA GANAR PUNTOS</button>
+    <button id="click" style="padding: 20px; font-size: 15px; border-radius: 20px; background-image: linear-gradient(to bottom, rgb(33, 255, 33), rgb(0, 136, 0)); border: 5px solid green; cursor: pointer; touch-action: manipulation;">PRESIONAR PARA GANAR PUNTOS</button>
 </div>
 <div class="divComprar" id="divCompraMenuBoton" style="display: block;">
-    <button id="comprarMenu" style="height: fit-content; width: fit-content; display: flex; align-self: center; padding: 10px; font-size: 20px; font-weight: bold; cursor: pointer; background-image: linear-gradient(to bottom, rgb(140, 140, 252), rgb(43, 80, 248)); border-radius: 10px; border: 5px solid blue;">🛒 COMPRAR 🛒</button>
+    <button id="comprarMenu" style="height: fit-content; width: fit-content; display: flex; align-self: center; padding: 10px; font-size: 20px; font-weight: bold; cursor: pointer; background-image: linear-gradient(to bottom, rgb(140, 140, 252), rgb(43, 80, 248)); border-radius: 10px; border: 5px solid blue; touch-action: manipulation;">🛒 COMPRAR 🛒</button>
 </div>
 <div class="divComprar" id="divCompraMenuTienda" style="display: none;">
 <button class="comprarBoton" id="btn1">[100] ⬅ COMPRAR | +1 PUNTOS</button>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JUEGO CLICKER [MEJORADO]</title>
+        <style>
+.tituloDiv {
+background-image: linear-gradient(to bottom, rgb(255, 76, 76), rgb(255, 135, 135));
+padding: 20px;
+border-radius: 20px;
+border: 5px solid rgb(70, 0, 0);
+display: flex;
+justify-content: center;
+justify-self: center;
+width: fit-content;
+height: fit-content;
+flex-direction: column;
+}
+.divPrincipal {
+    background-image: linear-gradient(to bottom, rgb(255, 213, 134), rgb(255, 190, 92));
+    padding: 20px;
+    border-radius: 20px;
+    border: 5px solid rgb(201, 107, 0);
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+}
+.divComprar {
+    background-image: linear-gradient(to bottom, rgb(134, 217, 255), rgb(92, 190, 255));
+    padding: 20px;
+    border-radius: 20px;
+    border: 5px solid rgb(0, 137, 201);
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    width: fit-content;
+    height: fit-content;
+    flex-direction: column;
+}
+.comprarBoton {
+background-image: linear-gradient(to bottom, gold, rgb(187, 153, 1));
+padding: 10px;
+font-size: 20px;
+border-radius: 10px;
+cursor: pointer;
+border: 5px solid rgb(155, 113, 7);
+margin: 10px;
+}
+.acomprarBoton {
+background-image: linear-gradient(to bottom, rgb(153, 0, 255), rgb(187, 1, 156));
+padding: 10px;
+font-size: 20px;
+border-radius: 10px;
+cursor: pointer;
+border: 5px solid rgb(155, 7, 135);
+margin: 10px;
+}
+        </style>
+        <body style="font-family: sans-serif; background-image: linear-gradient(to bottom, rgb(4, 1, 7), rgb(0, 6, 26)); min-height: 100vh; background-repeat: no-repeat; margin: 0px;">
+<div class="tituloDiv" id="divPrincipalRegresar">
+<h1>JUEGO CLICKER</h1>
+<button id="regresarMenu" style="height: fit-content; width: fit-content; display: flex; align-self: center; padding: 10px; font-size: 20px; font-weight: bold; cursor: pointer; background-image: linear-gradient(to bottom, rgb(255, 37, 37), rgb(187, 0, 0)); border: 5px solid rgb(156, 0, 0); border-radius: 20px;">REGRESAR AL MENU</MENU></button>
+</div>
+<div class="divPrincipal" id="divPrincipalMostrar" style="display: flex;">
+    <h1 style="align-self: center;" id="puntosTotales">0 PTS</h1>
+    <h1 style="align-self: center;" id="puntosSeg">0/SEG</h1>
+    <h1 style="align-self: center;" id="puntosClick">0 [POR CLICK]</h1>
+    <button id="click" style="padding: 20px; font-size: 15px; border-radius: 20px; background-image: linear-gradient(to bottom, rgb(33, 255, 33), rgb(0, 136, 0)); border: 5px solid green; cursor: pointer;">PRESIONAR PARA GANAR PUNTOS</button>
+</div>
+<div class="divComprar" id="divCompraMenuBoton" style="display: block;">
+    <button id="comprarMenu" style="height: fit-content; width: fit-content; display: flex; align-self: center; padding: 10px; font-size: 20px; font-weight: bold; cursor: pointer; background-image: linear-gradient(to bottom, rgb(140, 140, 252), rgb(43, 80, 248)); border-radius: 10px; border: 5px solid blue;">🛒 COMPRAR 🛒</button>
+</div>
+<div class="divComprar" id="divCompraMenuTienda" style="display: none;">
+<button class="comprarBoton" id="btn1">[100] ⬅ COMPRAR | +1 PUNTOS</button>
+<button class="comprarBoton" id="btn2">[500] ⬅ COMPRAR | +5 PUNTOS</button>
+<button class="acomprarBoton" id="btn3">[1.5k] ⬅ COMPRAR | +1 PUNTOS POR SEG</button>
+<button class="acomprarBoton" id="btn4">[3.5k] ⬅ COMPRAR | +5 PUNTOS POR SEG</button>
+<button class="comprarBoton" id="btn5">[5k] ⬅ COMPRAR | +50 CLICKS</button>
+<button class="comprarBoton" id="btn6">[7.5k] ⬅ COMPRAR | +75 CLICKS</button>
+<button class="acomprarBoton" id="btn7">[7.5k] ⬅ COMPRAR | +25 PUNTOS POR SEG</button>
+<button class="acomprarBoton" id="btn8">[13k] ⬅ COMPRAR | +50 PUNTOS POR SEG</button>
+<button class="comprarBoton" id="btn9">[17k] ⬅ COMPRAR | +100 CLICKS</button>
+<button class="comprarBoton" id="btn10">[27k] ⬅ COMPRAR | +250 CLICKS</button>
+<button class="acomprarBoton" id="btn11">[35k] ⬅ COMPRAR | +150 PUNTOS POR SEG</button>
+<button class="acomprarBoton" id="btn12">[50k] ⬅ COMPRAR | +250 PUNTOS POR SEG</button>
+<button class="comprarBoton" id="btn13">[100k] ⬅ COMPRAR | +1000 CLICKS</button>
+<button class="comprarBoton" id="btn14">[150k] ⬅ COMPRAR | +1500 CLICKS</button>
+<button class="acomprarBoton" id="btn15">[200k] ⬅ COMPRAR | +1800 PUNTOS POR SEG</button>
+<button class="acomprarBoton" id="btn16">[500k] ⬅ COMPRAR | +9000 PUNTOS POR SEG</button>
+</div>
+<script>
+let btn1 = document.getElementById("btn1")
+let btn2 = document.getElementById("btn2")
+let btn3 = document.getElementById("btn3")
+let btn4 = document.getElementById("btn4")
+let btn5 = document.getElementById("btn5")
+let btn6 = document.getElementById("btn6")
+let btn7 = document.getElementById("btn7")
+let btn8 = document.getElementById("btn8")
+let btn9 = document.getElementById("btn9")
+let btn10 = document.getElementById("btn10")
+let btn11 = document.getElementById("btn11")
+let btn12 = document.getElementById("btn12")
+let btn13 = document.getElementById("btn13")
+let btn14 = document.getElementById("btn14")
+let btn15 = document.getElementById("btn15")
+let btn16 = document.getElementById("btn16")
+let botonClick = document.getElementById("click");
+let regresarMenu = document.getElementById("regresarMenu");
+let puntosTotales = document.getElementById("puntosTotales");
+let puntosSeg = document.getElementById("puntosSeg");
+let puntosClick = document.getElementById("puntosClick");
+let botonCompra = document.getElementById("comprarMenu")
+let divPrincipalRegresar = document.getElementById("divPrincipalRegresar")
+let divPrincipal = document.getElementById("divPrincipalMostrar");
+let divComprar = document.getElementById("divCompraMenuBoton");
+let divTienda = document.getElementById("divCompraMenuTienda");
+let tiendaAbierta = false
+botonCompra.addEventListener("mouseover", function () {
+    botonCompra.style.backgroundImage = "linear-gradient(to bottom, #fffb00, #ffc500)"
+    botonCompra.style.borderColor = "#c4af00"
+})
+botonCompra.addEventListener("mouseout", function() {
+    botonCompra.style.backgroundImage = "linear-gradient(to bottom, rgb(140, 140, 252), rgb(43, 80, 248))"
+    botonCompra.style.borderColor = "blue"
+})
+botonCompra.addEventListener("click", function() {
+    if (tiendaAbierta === false) {
+    botonCompra.textContent = "🛒 REGRESAR 🛒";
+    divPrincipal.style.display = "none";
+    divTienda.style.display = "flex"
+    divPrincipalRegresar.style.display = "none"
+    tiendaAbierta = true
+    } else {
+            botonCompra.textContent = "🛒 COMPRAR 🛒";
+    divPrincipal.style.display = "flex";
+    divTienda.style.display = "none"
+    divPrincipalRegresar.style.display = "flex"
+    tiendaAbierta = false
+    }
+})
+const jugador = {
+    clicksHechos: 0,
+    puntosPorClick: 1,
+    puntosPorSegundo: 0,
+    comprado: 0,
+    puntos: 0,
+}
+function guardarObjetoJugador() {
+    localStorage.setItem("jugadorGuardado", JSON.stringify(jugador));
+}
+function cargarObjetoJugador() {
+    let objetoRecuperado = localStorage.getItem("jugadorGuardado")
+    let texto = JSON.parse(objetoRecuperado);
+if (texto !== null) {
+    jugador.clicksHechos = texto.clicksHechos;
+    jugador.puntosPorClick = texto.puntosPorClick;
+    jugador.puntosPorSegundo = texto.puntosPorSegundo;
+    jugador.comprado = texto.comprado;
+    jugador.puntos = texto.puntos;
+    console.log("RECUPERADO", texto)
+    puntosTotales.innerHTML = jugador.puntos + " PTS"
+    puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+    puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+} else {
+    console.log("no hay partida guardada")
+}
+}
+cargarObjetoJugador()
+botonClick.addEventListener("mouseover", function() {
+    botonClick.style.backgroundImage = "linear-gradient(to bottom, #03d400, #028f01)";
+})
+botonClick.addEventListener("mouseout", function() {
+    botonClick.style.backgroundImage = "linear-gradient(to bottom, rgb(33, 255, 33), rgb(0, 136, 0))"
+})
+botonClick.addEventListener("click", function() {
+    jugador.clicksHechos++;
+jugador.puntos = jugador.puntos + jugador.puntosPorClick
+puntosTotales.innerHTML = jugador.puntos + " PTS"
+    guardarObjetoJugador();
+})
+btn1.addEventListener("click", function() {
+    if (jugador.puntos >= 100) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 100;
+        jugador.puntosPorClick = jugador.puntosPorClick + 1;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 100")
+    }
+})
+btn2.addEventListener("click", function() {
+    if (jugador.puntos >= 500) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 500;
+        jugador.puntosPorClick = jugador.puntosPorClick + 5;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 500")
+    }
+})
+btn5.addEventListener("click", function() {
+    if (jugador.puntos >= 5000) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 5000;
+        jugador.puntosPorClick = jugador.puntosPorClick + 50;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 5000")
+    }
+})
+btn6.addEventListener("click", function() {
+    if (jugador.puntos >= 7500) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 7500;
+        jugador.puntosPorClick = jugador.puntosPorClick + 75;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 7500")
+    }
+})
+btn9.addEventListener("click", function() {
+    if (jugador.puntos >= 17000) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 17000;
+        jugador.puntosPorClick = jugador.puntosPorClick + 100;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 17000")
+    }
+})
+btn10.addEventListener("click", function() {
+    if (jugador.puntos >= 27000) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 27000;
+        jugador.puntosPorClick = jugador.puntosPorClick + 250;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 27000")
+    }
+})
+btn13.addEventListener("click", function() {
+    if (jugador.puntos >= 100000) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 100000;
+        jugador.puntosPorClick = jugador.puntosPorClick + 1000;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 100000")
+    }
+})
+btn14.addEventListener("click", function() {
+    if (jugador.puntos >= 150000) {
+        console.log("COMPRADO.")
+        jugador.comprado = jugador.comprado + 1;
+        jugador.puntos = jugador.puntos - 150000;
+        jugador.puntosPorClick = jugador.puntosPorClick + 1500;
+        jugador.puntos = jugador.puntos + jugador.puntosPorClick
+        puntosTotales.innerHTML = jugador.puntos + " PTS"
+        puntosClick.innerHTML = jugador.puntosPorClick + " [POR CLICK]"
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 150000")
+    }
+})
+let tiempo = ""
+tiempo = setInterval(() => {
+    if (jugador.puntosPorSegundo >= 1) {
+       jugador.puntos = jugador.puntos + jugador.puntosPorSegundo;
+       puntosTotales.innerHTML = jugador.puntos + " PTS"
+       guardarObjetoJugador();
+    }
+}, 1000)
+btn3.addEventListener("click", function() {
+    if (jugador.puntos >= 1500) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 1;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 1500;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 1500")
+    }
+})
+btn4.addEventListener("click", function() {
+    if (jugador.puntos >= 3500) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 5;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 3500;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 3500")
+    }
+})
+btn7.addEventListener("click", function() {
+    if (jugador.puntos >= 7500) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 25;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 7500;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 7500")
+    }
+})
+btn8.addEventListener("click", function() {
+    if (jugador.puntos >= 13000) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 50;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 13000;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 13000")
+    }
+})
+btn11.addEventListener("click", function() {
+    if (jugador.puntos >= 35000) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 150;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 35000;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 35000")
+    }
+})
+btn12.addEventListener("click", function() {
+    if (jugador.puntos >= 50000) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 250;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 50000;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 50000")
+    }
+})
+btn15.addEventListener("click", function() {
+    if (jugador.puntos >= 200000) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 1800;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 200000;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 200000")
+    }
+})
+btn16.addEventListener("click", function() {
+    if (jugador.puntos >= 500000) {
+jugador.puntosPorSegundo = jugador.puntosPorSegundo + 9000;
+puntosSeg.innerHTML = jugador.puntosPorSegundo + "/SEG"
+jugador.puntos = jugador.puntos - 500000;
+        guardarObjetoJugador();
+    } else {
+        console.error("ERROR: PUNTOS INSUFICIENTES. NECESARIO: 350000")
+    }
+})
+regresarMenu.addEventListener("mouseover", function () {
+    regresarMenu.style.backgroundImage = "linear-gradient(to bottom, #ff6464, #ff8989)"
+    regresarMenu.style.border = "5px solid #ff6363"
+})
+regresarMenu.addEventListener("mouseout", function () {
+    regresarMenu.style.backgroundImage = "linear-gradient(to bottom, rgb(255, 37, 37), rgb(187, 0, 0))"
+    regresarMenu.style.border = "5px solid rgb(156, 0, 0)"
+})
+regresarMenu.addEventListener("click", function() {
+    window.location.href = "https://wwy-dev.github.io/JUEGOS/";
+})
+  </script>
+        </body>
+    </head>
+</html>
